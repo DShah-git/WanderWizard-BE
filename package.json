@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "Backend for TripPlanner",
   "main": "index.js",
-  "engines":{
+  "engines": {
     "node": ">=20.11.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "postbuild": "chmod +x bin/postbuild.sh && ./bin/postbuild.sh"
+    "start":"node index.js",
+    "build": "webpack",
+    "prod": "node dist/final.js"
   },
   "author": "Devansh Shah",
   "license": "ISC",
@@ -32,5 +32,9 @@
     "mongoose": "^8.5.3",
     "openai": "^4.57.0",
     "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4"
   }
 }
