@@ -29,7 +29,7 @@ const generationConfig = {
 };
 
 AWS.config.update({
-  accessKeyId: process.env.aws_access_key_aws,
+  accessKeyId: process.env.access_key_aws,
   secretAccessKey: process.env.secret_key_aws,
   region: "us-east-1",
 });
