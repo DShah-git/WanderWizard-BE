@@ -3,10 +3,21 @@ const app = express();
 const port = 3000;
 var cors = require('cors')
 const bodyParser = require('body-parser'); // Import body-parser
+const compression = require("compression");
+const helmet = require("helmet");
 const env = require('dotenv').config()
 
 const userRoutes = require('./users/user')
 const tripRoutes = require('./trips/trip')
+
+app.use(compression()); // Compress all routes
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
+    },
+  }),
+);
 
 const corsOptions = {
   origin: 'http://localhost:4200', // Allow all origins

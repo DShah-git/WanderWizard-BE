@@ -2,13 +2,17 @@
 .env
 /env
 
+.amplify-hosting
+dist
+node_modules
+
 # compiled output
 /dist
 /tmp
 /out-tsc
 
 # dependencies
-/node_modules
+/git commit -m "first commit"_modules
 */node_modules
 
 # IDEs and editors
