@@ -55,6 +55,7 @@ router.post('/login', async (req, res) => {
     return res.status(400).json({ msg: 'Please enter all fields' });
   }
 
+
   try {
     // Check if user exists
     const user = await User.findOne({ email });
@@ -85,8 +86,9 @@ router.post('/login', async (req, res) => {
     });
 
 
-    res.json({
-      user: payload,
+    return res.json({
+      token:token,
+      user: payload
     });
   } catch (err) {
     console.error(err.message);

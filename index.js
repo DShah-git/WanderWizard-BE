@@ -20,7 +20,7 @@ app.use(
 );
 
 const corsOptions = {
-  origin: 'http://localhost:4200', // Allow all origins
+  origin: ['http://localhost:4200','https://main.d2zhzms6szevf5.amplifyapp.com'], // Allow all origins
   methods: 'GET,POST,PUT,DELETE,OPTIONS,PATCH', // Allowed HTTP methods
   allowedHeaders: 'Content-Type,Authorization,x-auth', // Allowed headers
   credentials: true // Allows credentials (cookies, authorization headers, etc.)
