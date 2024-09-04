@@ -275,6 +275,9 @@ async function findAndAddImage(location) {
       `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${location}&key=${google_key}`
     );
 
+    console.log(locationResponse.data)
+    
+
     // get info from first Image
     let google_image = locationResponse.data.results[0].photos[0];
     let google_location_id = locationResponse.data.results[0].place_id;
