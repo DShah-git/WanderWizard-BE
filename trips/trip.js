@@ -29,8 +29,8 @@ const generationConfig = {
 };
 
 AWS.config.update({
-  accessKeyId: process.env.access_key_aws,
-  secretAccessKey: process.env.secret_key_aws,
+  accessKeyId: process.env.access_key,
+  secretAccessKey: process.env.secret_key,
   region: "us-east-1",
 });
 
@@ -140,9 +140,10 @@ router.post("/create", async (req, res) => {
     activity_level
   );
 
-  for(let i=0;i<tripItinerary.length;i++){
-    tripItinerary[i].image = await findAndAddImage(tripItinerary[i].activity[0].activity_location)
-  }
+  //for image of each day
+  // for(let i=0;i<tripItinerary.length;i++){
+  //   tripItinerary[i].image = await findAndAddImage(tripItinerary[i].activity[0].activity_location)
+  // }
 
   console.log(tripItinerary)
 
