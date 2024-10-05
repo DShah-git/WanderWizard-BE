@@ -9,6 +9,9 @@ const env = require('dotenv').config()
 
 const userRoutes = require('./users/user')
 const tripRoutes = require('./trips/trip')
+const tripWithoutUserRoutes = require('./trips/tripWithoutUser')
+
+
 
 app.use(compression()); // Compress all routes
 app.use(
@@ -35,15 +38,22 @@ app.use(bodyParser.urlencoded({ extended: true })); // For parsing application/x
 
 // Import authentication middleware
 const authMiddleware = require('./middleware/auth.middleware');
+const { default: externalFunctions } = require('./trips/externalFunctions');
 
 
 
 app.use('/user', userRoutes);
+
 app.use('/trip',authMiddleware,tripRoutes)
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
+
+
+
+app.use('/createTripWithoutUser',tripWithoutUserRoutes)
+
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}/`);
