@@ -80,4 +80,43 @@ router.get("/trip/:id", async (req, res) => {
 });
 
 
+router.patch("/update", async (req, res) => {
+  let body = req.body;
+  let trip_id = body._id
+  try{
+    
+    let trip = await Trip.findOneAndUpdate({ _id: trip_id },body,{new:true});
+    
+
+    if(trip){
+      return res.send({msg:"trip saved successfully",trip:trip})
+    }else{
+      return res.status(400).send({msg:"Incorrect updates provided"})
+    }
+    
+
+  }catch(err){
+    console.log(err)
+    res.status(500).send("Some error happened in server")
+  }
+
+});
+
+router.post("/suggestion",async(req,res)=>{
+  let {previousLocation,trip_location} = req.body
+
+  try{
+    let AISuggestion = await externalFunctions.callSuggestionGenerativeAPI(previousLocation,trip_location,3)
+    
+    console.log(AISuggestion)
+    
+    return res.send(AISuggestion)
+
+  }catch(err){
+    console.log(err)
+    return res.status(500).send({msg:"some server error"})
+  }
+})
+
+
 module.exports = router;
