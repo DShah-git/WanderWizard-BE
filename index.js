@@ -23,7 +23,7 @@ app.use(
 );
 
 const corsOptions = {
-  origin: ['http://localhost:4200','https://main.d2zhzms6szevf5.amplifyapp.com','https://ww.devanshshah.ca/','https://wanderwizard.devanshshah.ca/'],
+  origin: ['http://localhost:4200','https://main.d2zhzms6szevf5.amplifyapp.com','https://ww.devanshshah.ca','https://wanderwizard.devanshshah.ca'],
   methods: 'GET,POST,PUT,DELETE,OPTIONS,PATCH', // Allowed HTTP methods
   allowedHeaders: 'Content-Type,Authorization,x-auth', // Allowed headers
   credentials: true // Allows credentials (cookies, authorization headers, etc.)
