@@ -11,7 +11,7 @@ const {
 const genAI = new GoogleGenerativeAI(process.env.google_gemini_key);
 
 const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash",
+  model: "gemini-2.5-flash",
 });
 
 const generationConfig = {
@@ -48,6 +48,8 @@ async function findAndAddImage(location) {
     let latandlong = locationResponse.data.results[0].geometry.location;
 
     let image_exists = await checkInS3(google_location_id);
+
+    console.log(locationResponse.data.results[0].photos)
 
     //check if the image for this location exist in s3 return that object
     if (image_exists) {
