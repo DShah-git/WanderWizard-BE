@@ -149,22 +149,6 @@ async function callGenerativeAPI(
     // safetySettings: Adjust safety settings
     // See https://ai.google.dev/gemini-api/docs/safety-settings
     history: [
-      {
-        role: "user",
-        parts: [
-          {
-            text: 'with following format - [{day:1,date: "05/09/2024", activity:[{activity_name,activity_location,activity_description}]}] create a {5} day, day by day itinerary to {paris}, including 2-3 activities a day ',
-          },
-        ],
-      },
-      {
-        role: "user",
-        parts: [
-          {
-            text: 'with following format - [{day:1,date: "05/09/2024", activity:[{activity_name,activity_location,activity_description}]}] create a {6} day [start date: 10/10/2024, end date 16/10/2024], day by day itinerary to {paris}, including 2-3 activities a day \n',
-          },
-        ],
-      },
     ],
   });
 
