@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const Trip = require("./trip.model");
-const externalFunctions = require('./externalFunctions')
+const Trip = require("../models/trip.model");
+const externalFunctions = require('../utils/aiCalls')
 
 
 

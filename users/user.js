@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const db = require('../db/db')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('./user.model'); // Import the User model
+const User = require('../models/user.model'); // Import the User model
 const authMiddleware = require('../middleware/auth.middleware')
 
 

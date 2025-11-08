@@ -146,8 +146,6 @@ async function callGenerativeAPI(
 
   const chatSession = model.startChat({
     generationConfig,
-    // safetySettings: Adjust safety settings
-    // See https://ai.google.dev/gemini-api/docs/safety-settings
     history: [
     ],
   });
@@ -160,6 +158,22 @@ async function callGenerativeAPI(
   let jsonRes = JSON.parse(result);
   //console.log(jsonRes)
   return jsonRes;
+}
+
+async function getAILocationDescription(location){
+  let prompt = `Give me a brief 7-10 line description of why people go to ${location}. Return JSON in following format - {"description":"answer"}`;
+
+  const chatSession = model.startChat({
+    generationConfig,
+    history: [
+    ],
+  });
+
+  const AIResult = await chatSession.sendMessage(prompt);
+
+  let result = AIResult.response.text();
+
+  return JSON.parse(result)
 }
 
 async function callSuggestionGenerativeAPI(
@@ -172,38 +186,7 @@ async function callSuggestionGenerativeAPI(
   const chatSession = model.startChat({
     generationConfig,
     history: [
-      {
-        role: "user",
-        parts: [
-          {
-            text: "with the following format - places:[{activity_name,activity_location,activity_description,location_type}] suggest 3 place for a trip near old manali at manali, categories location_type from following types - [Beach, Museum, Location, Hotel, Travel, Sight Seeing, Market, Shopping, Historical sites, Restaurant, Bar], give only json data",
-          },
-        ],
-      },
-      {
-        role: "model",
-        parts: [
-          {
-            text: "[{activity_name: Old Manali Village Walk, activity_location: Old Manali, activity_description: Explore the charming streets of Old Manali, with its Tibetan shops, cafes, and guesthouses., location_type: Sight Seeing}, {activity_name: Hadimba Temple, activity_location: Old Manali, activity_description: Visit the ancient Hadimba Temple, dedicated to the wife of Bhima, one of the Pandava brothers from the Hindu epic Mahabharata., location_type: Historical sites}, {activity_name: Jogini Falls, activity_location: Near Old Manali, activity_description: Hike to the beautiful Jogini Falls, a serene waterfall nestled amidst the mountains., location_type: Sight Seeing}]\n\n",
-          },
-        ],
-      },
-      {
-        role: "user",
-        parts: [
-          {
-            text: "with the following format - places:[{activity_name,activity_location,activity_description,location_type}] suggest 3 place for a trip near CN tower at toronto, categories location_type from following types - [Beach, Museum, Location, Hotel, Travel, Sight Seeing, Market, Shopping, Historical sites, Restaurant, Bar], give only json data",
-          },
-        ],
-      },
-      {
-        role: "model",
-        parts: [
-          {
-            text: "[{activity_name: Ripley's Aquarium of Canada, activity_location: Downtown Toronto, activity_description: Explore a vast underwater world with diverse marine life at Ripley's Aquarium., location_type: Museum}, {activity_name: St. Lawrence Market, activity_location: Downtown Toronto, activity_description: Browse through local produce, artisan goods, and food vendors at the historic St. Lawrence Market., location_type: Market}, {activity_name: The Distillery District, activity_location: Downtown Toronto, activity_description: Discover this charming Victorian-era district filled with art galleries, boutiques, restaurants, and bars., location_type: Shopping}]\n\n",
-          },
-        ],
-      },
+     
     ],
   });
 
@@ -216,4 +199,4 @@ async function callSuggestionGenerativeAPI(
   return jsonRes;
 }
 
-module.exports =  {findAndAddImage, checkInS3 ,callGenerativeAPI,callSuggestionGenerativeAPI };
+module.exports =  {findAndAddImage, checkInS3 ,callGenerativeAPI,callSuggestionGenerativeAPI, getAILocationDescription };
