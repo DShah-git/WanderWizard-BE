@@ -38,8 +38,6 @@ app.use(bodyParser.urlencoded({ extended: true })); // For parsing application/x
 
 // Import authentication middleware
 const authMiddleware = require('./middleware/auth.middleware');
-const { default: externalFunctions } = require('./trips/externalFunctions');
-
 
 
 app.use('/user', userRoutes);

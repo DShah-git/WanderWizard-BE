@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const Trip = require("./trip.model");
-const externalFunctions = require('./externalFunctions')
+const Trip = require("../models/trip.model");
+const externalFunctions = require('../utils/aiCalls')
 
 router.post("/create", async (req, res) => {
     
@@ -39,6 +39,12 @@ router.post("/create", async (req, res) => {
     activity_level = "4";
   }
 
+  // let description = await externalFunctions.getAILocationDescription(trip.tripModel.location)
+
+  // tripModel.locationDescription = description.description
+
+  // will add kafka connection here which will save job ID in mongoDB.
+
   let tripItinerary = await externalFunctions.callGenerativeAPI(
     trip.tripModel.location,
     days,
@@ -60,6 +66,18 @@ router.post("/create", async (req, res) => {
 
 });
 
+
+router.post('/test-description',async (req,res) => {
+
+  let {location} = req.body
+
+  let description = await externalFunctions.getAILocationDescription(location)
+
+  return res.send(description)
+
+})
+
+
 router.get("/trip/:id", async (req, res) => {
   let _id = req.params.id.toString();
 
@@ -78,7 +96,6 @@ router.get("/trip/:id", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
-
 
 router.patch("/update", async (req, res) => {
   let body = req.body;
